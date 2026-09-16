@@ -13,28 +13,33 @@ marketplace is just a git repository with a JSON catalog in it.
 
 ## Install
 
-Point Claude Code at wherever this repository lives, then install the plugin:
-
 ```bash
-/plugin marketplace add https://git.example.internal/you/astro-agents.git
+/plugin marketplace add kkolsut/astro-agents
 /plugin install astro@astro-agents
 ```
 
-Two things that bite on a self-hosted host (Gitea, Forgejo, self-managed
-GitLab):
+The GitHub shorthand clones over SSH by default, so a private repository works
+with a key in `ssh-agent` and needs no token. To pin a version rather than
+track the default branch, append a ref:
+
+```bash
+/plugin marketplace add kkolsut/astro-agents#v1.0.0
+```
+
+### On a git host that is not GitHub
+
+Give the full URL. Two things bite on a self-hosted host (Gitea, Forgejo,
+self-managed GitLab):
 
 - **The URL must end in `.git`.** Without the suffix Claude Code treats it as a
   direct link to a hosted `marketplace.json` and never clones the repository.
   GitHub and gitlab.com are the only hosts where the suffix is optional.
 - **Prefer SSH for background auto-updates.** Background refresh disables git
   credential helpers for HTTPS, so a private repository over HTTPS updates
-  interactively but not in the background. With a key in `ssh-agent`,
-  `git@git.example.internal:you/astro-agents.git` works for both.
-
-To pin a version rather than track the default branch, append a ref:
+  interactively but not in the background. A key in `ssh-agent` covers both.
 
 ```bash
-/plugin marketplace add https://git.example.internal/you/astro-agents.git#v1.0.0
+/plugin marketplace add git@git.example.internal:you/astro-agents.git
 ```
 
 ### Installing per project, so the project records it
@@ -44,7 +49,7 @@ To pin a version rather than track the default branch, append a ref:
 
 ```bash
 cd ~/projects/my-paper
-claude plugin marketplace add https://git.example.internal/you/astro-agents.git --scope project
+claude plugin marketplace add kkolsut/astro-agents --scope project
 claude plugin install astro@astro-agents --scope project
 ```
 
@@ -52,7 +57,7 @@ claude plugin install astro@astro-agents --scope project
 {
   "extraKnownMarketplaces": {
     "astro-agents": {
-      "source": { "source": "git", "url": "https://git.example.internal/you/astro-agents.git" }
+      "source": { "source": "github", "repo": "kkolsut/astro-agents" }
     }
   },
   "enabledPlugins": { "astro@astro-agents": true }
