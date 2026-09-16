@@ -133,6 +133,25 @@ system prompt. Notes for editing them:
   every prompt. The companion `astro-template` repository carries the ones
   these agents assume: explicit units, frames, time systems, and provenance.
 
+The prompts are built around the specific errors that survive code review in
+each subfield, not around generic best practice. Some of what they check by
+default:
+
+- Air vs vacuum wavelengths (~90 km/s if confused) and the sign of the
+  barycentric correction
+- BJD_TDB vs HJD vs BTJD vs BKJD — leap seconds drift UTC-based times by tens
+  of seconds
+- Aperture corrections, omitted more often than any other photometric step
+- Window functions and sampling aliases before any claimed period
+- "Uniform priors are uninformative", which is false in every
+  reparameterisation
+- Comoving vs physical, and h-factors, in simulation output
+- Formal white-noise errors quoted on data with obvious red noise
+- An abstract claiming more than the results section supports
+
+`results-referee` re-checks all of these independently of whichever agent
+produced the result, which is why it is read-only and adversarial.
+
 Plugin agents cannot use the `hooks`, `mcpServers` or `permissionMode`
 frontmatter fields. None of these do; if one ever needs them it has to be
 copied into a project's `.claude/agents/` instead.

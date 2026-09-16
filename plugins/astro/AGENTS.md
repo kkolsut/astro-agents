@@ -1,7 +1,11 @@
 # Research agents
 
 Eleven agents covering the path from "I have a vague interest" to "the paper is submitted".
-Invoke by name, or describe the task and the right one will be selected.
+Invoke by name, or describe the task and the right one will be selected. Installed as a plugin
+they are also addressable scoped, as `astro:lit-scout` and so on.
+
+For installing, editing and versioning these, see the [repository README](../../README.md).
+For what each one does in detail, [`docs/agents.md`](../../docs/agents.md).
 
 | Agent | Use it when | Model |
 |---|---|---|
@@ -38,13 +42,3 @@ never edits files — treat a clean report as meaningful only if it names what i
 
 Agents can run in parallel when their work is independent — e.g. `lit-scout` on the background
 literature while `archive-scout` pulls the data.
-
-## Editing these
-
-Each file is frontmatter (`name`, `description`, `tools`, `model`) plus a system prompt. The
-`description` is what the router matches on, so keep it concrete about *when* to invoke — that
-matters more than the prose below it. Shared conventions live in `../../CLAUDE.md` rather than being
-repeated in every agent.
-
-`model: inherit` uses whatever model the main session is on; the two scout agents are pinned to
-sonnet since their work is retrieval rather than judgement. Change that if you want them heavier.
