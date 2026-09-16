@@ -1,0 +1,15 @@
+{
+  "name": "astro-agents",
+  "description": "Astronomy research subagents, shared across projects.",
+  "owner": {
+    "name": "Krzysztof Kolsut",
+    "email": "krzysztof.kolsut@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "astro",
+      "description": "Subagents for observational astronomy, from project scoping to a submitted manuscript.",
+      "source": "./plugins/astro"
+    }
+  ]
+}

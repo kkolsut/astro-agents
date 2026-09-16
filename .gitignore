@@ -1,0 +1,3 @@
+# Nothing built here -- the repo is the artifact. Keep editor and OS noise out.
+*.swp
+.DS_Store

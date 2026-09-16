@@ -1,0 +1,11 @@
+{
+  "name": "astro",
+  "displayName": "Astronomy research agents",
+  "description": "Eleven subagents covering an observational astronomy project from scoping through submission: feasibility, literature, archive retrieval, photometry, spectroscopy, time domain, inference, theory, figures, manuscript, and an adversarial referee.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Krzysztof Kolsut"
+  },
+  "keywords": ["astronomy", "astrophysics", "research", "astropy", "observational"],
+  "license": "MIT"
+}
